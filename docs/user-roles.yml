@@ -1,0 +1,14 @@
+Root: Acesso desenvolvedor geral do sistema e fontes e BD.
+Aministradores masters: Tem acesso acesso de todas as unidades perfil adm e operacional
+Administradores: é grupo usuarios podendo ser direção com um perfil amplo, macro, porém unidade local
+Gerentes: Perfil mais operacional com alguns acessos administrativos.
+CSD: mesmo perfil de gerente., porém com algumas tribuições OPERACIONAIS. CSD siginifica (CHEFE DE SEGURANÇA DISCIPLINAR)
+Policiais Penais: São usuarios que são abaixo coordenado pelo CSD, que tbm terão perfil de acesso, com mesma prerrogativa de um usuario comum.
+
+Monitores: São usuarios comuns que tem permissão de acesso só em modulos especificos.
+
+Biblioteca o monitor responsavel por ela, só cadastra e edita, não exlue nada, se houver necessidade de exclusão,
+o sistema pede uma senha para o gerente, e o mesmo verifica os acontecimentos.
+
+Todo usuário
+comum de monitores abaixo é para ter log. para analise de informações.

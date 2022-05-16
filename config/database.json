@@ -1,0 +1,27 @@
+{
+  "default": {
+    "driver": "mysql",
+    "adapter": "mysql",
+    "host": "localhost",
+    "username": "cratemissiam12",
+    "password": "w39Qa3BXycqUtm37",
+    "user": "cratemissiam12",
+    "pass": "w39Qa3BXycqUtm37",
+    "charset": "utf8",
+    "collation": "utf8_unicode_ci",
+    "prefix": "",
+    "engine": "InnoDB"
+  },
+
+  "development": {
+    "database": "app_development_database"
+  },
+
+  "test": {
+    "database": "app_test_database"
+  },
+
+  "production": {
+    "database": "app_production_database"
+  }
+}

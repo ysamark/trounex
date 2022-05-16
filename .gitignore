@@ -1,0 +1,9 @@
+# depencies instalation directories
+vendor
+node_modules
+
+# yarn error
+yarn-error.log
+
+# environment variables
+.env

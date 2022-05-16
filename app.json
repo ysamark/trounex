@@ -1,0 +1,6 @@
+{
+  "name": "Start on Heroku: PHP, Trounex",
+  "description": "A barebones PHP app that makes use of the Trounex web framework",
+  "repository": "https://github.com/agostinhosamil/trounex",
+  "addons": []
+}

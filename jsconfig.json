@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./assets/javascript/",
+    "paths": {
+      "~/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@components": ["./components"],
+      "@lib/*": ["./lib/*"]
+    }
+  },
+  "exclude": [
+    "node_modules", 
+    "vendor", 
+    "assets/javascript/build"
+  ]
+}

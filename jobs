@@ -1,0 +1,16 @@
+<?php
+
+namespace Jobs;
+
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/dotenv.config.php';
+
+use App\Modules\BackgroundJobs\Watcher;
+
+print ("\nMail Queue Started...!!\n");
+
+Watcher::Start ();
+
+print ("\nMail Queue Ended...!!\n\tBye...! :)");
+
+exit (0);
