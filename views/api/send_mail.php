@@ -12,7 +12,8 @@ class Send_Mail {
       'Body' => '<h1 style="border: 10px solid #daa540; padding: 70px; font-size: 80px; color: #ffffff; background-color: red;">O meu email foi enviado com seucesso para voçê, se alegre!!! hehehhe.</h1>',
 
       'Addresses' => [
-        ["agostinhosaml832@gmail.com", "Agostinho Lopes"]
+        ["agostinhosaml832@gmail.com", "Agostinho Lopes"],
+        ["luisikapemba@gmail.com", "Hélder Luís Kapemba"]
       ]
     ]);
 
