@@ -8,7 +8,7 @@ class Index {
   public function handler () {
     $this->title .= join (' - ', ["\nDate", date ('Y-m-d H:i:s')]);
 
-    echo 'APP_DEFAULT_RECIPIENT_EMAIL_ADDRESS => ', getenv ('APP_DEFAULT_RECIPIENT_EMAIL_ADDRESS');
+    echo 'APP_DEFAULT_RECIPIENT_EMAIL_ADDRESS => ', $_ENV ['APP_DEFAULT_RECIPIENT_EMAIL_ADDRESS'];
   }
 }
 
