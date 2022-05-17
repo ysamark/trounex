@@ -19,9 +19,6 @@ class Router {
 
     $directoryFileList = self::getDirectoryFileList ($viewsPath);
 
-    #echo '<pre>';
-    #print_r ($directoryFileList);
-    #exit (0);
     return $directoryFileList;
   }
 
@@ -49,18 +46,11 @@ class Router {
    */
   protected static function getDirectoryFileList ($directoryPath) {
 
-    $directoryPathRe = ($directoryPath);
-
-    # echo ('Re => ' . $directoryPathRe . '<br /><br />');
+    $directoryPathRe = (string)($directoryPath);
 
     $fileList = [];
     $directoryFileList = self::readDir ($directoryPathRe);
     $routeParamRe = '/\\[([^\\]]+)\\]/';
-
-    #echo "File => <span style=\"color: blue;\">", $directoryPathRe, "/*</span><BR />";
-    #echo '<div style="background-color: blue; color: white"><pre>';
-    #print_r ($directoryFileList);
-    #echo '</div></pre><br />';
 
     foreach ($directoryFileList as $directoryFile) {
       if (is_dir ($directoryFile)) {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APP - Automação de Processos Penitenciário</title>
+  <title>APP - Trounex<?= isset ($title) ? " | $title" : null ?></title>
   <link rel="shortcut icon" href="<?= image ('icons/favicon-16x16.png') ?>" type="image/png">
   <script type="text/javascript" src="<?= asset_path ('js', 'uolkeo.min.js') ?>" crossorigin="annonimous"></script>
   <!--script src="https://cdn.jsdelivr.net/npm/cep-promise/dist/cep-promise.min.js"></script-->

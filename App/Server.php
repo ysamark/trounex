@@ -55,7 +55,7 @@ class Server {
       "$viewsPath/$routePath/index.php"
     ];
 
-    $include = self::lambda (function ($__view) {
+    $include = function ($__view) {
       $vars = get_object_vars ($this);
 
       if (BaseController::isControllerInstance ($this)) {
@@ -72,7 +72,7 @@ class Server {
       }
       
       include ($__view ['path']);
-    });
+    };
 
     $actionMethod = 'handler';
 
@@ -106,7 +106,7 @@ class Server {
         
         self::beforeRender ();
 
-        $include (['path' => self::mainLayoutView ()]);
+        call_user_func_array (self::lambda ($include), [['path' => self::mainLayoutView ()]]);
 
         exit (0);
       }
@@ -158,7 +158,7 @@ class Server {
           } else {
             self::beforeRender ();
 
-            return call_user_func_array ($include, [['path' => self::mainLayoutView ()]]);
+            return call_user_func_array (self::lambda ($include), [['path' => self::mainLayoutView ()]]);
           }
   
           exit (0);
@@ -345,6 +345,10 @@ class Server {
   }
 
   public static function lambda ($callback) {
+    if (!($callback instanceof Closure)) {
+      return;
+    }
+
     if (!(is_object (self::$viewGlobalContext) )) {
       self::$viewGlobalContext = new BaseController;
     }
