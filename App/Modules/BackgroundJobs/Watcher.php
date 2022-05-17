@@ -56,6 +56,8 @@ class Watcher {
     while (self::Running ()) {
       if ($i++ >= 5 * 1000) {
         echo "\nAwaiting...\n";
+
+        $i = 0;
       }  
 
       self::Run ();
