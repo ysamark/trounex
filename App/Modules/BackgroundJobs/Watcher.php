@@ -51,15 +51,7 @@ class Watcher {
    * @method void Start
    */
   public static function Start () {
-    $i = 0;
-    
     while (self::Running ()) {
-      if ($i++ >= 5 * 1000) {
-        echo "\nAwaiting...\n";
-
-        $i = 0;
-      }  
-
       self::Run ();
     }
   }
