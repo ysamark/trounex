@@ -14,7 +14,6 @@ async function getUsers () {
 
 getUsers ();
 
-
 typeof uolkeo === 'object' && uolkeo.$$ready (function () {
   const htmlElementConfig = {
     '.form-textfield': Main.configTextField,

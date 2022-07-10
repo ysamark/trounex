@@ -161,6 +161,49 @@ class Mail {
       uuid () . '.json'
     ]);
 
+    $mailQueueCacheFilePath = join (DIRECTORY_SEPARATOR, [
+      dirname (dirname (__DIR__)), 
+      'db', 
+      'caches', 
+      'queue', 
+      'mail',
+      '_mail_queue.cache.json'
+    ]);
+
+    $mailQueueCacheFileHandler = fopen ($mailQueueCacheFilePath, 'r');
+
+    if (!!$mailQueueCacheFileHandler) {
+      $mailQueueCacheFileLines = [];
+      /**
+       * Fetch the file content
+       */
+      while (!feof ($mailQueueCacheFileHandler)) {
+        @array_push ($mailQueueCacheFileLines, fgets ($mailQueueCacheFileHandler));
+      }
+
+      @fclose ($mailQueueCacheFileHandler);
+
+      $mailQueueCacheFileContent = join ('', $mailQueueCacheFileLines);
+
+      $mailQueueCache = (array)(json_decode ($mailQueueCacheFileContent));
+
+      array_push ($mailQueueCache, ['data' => $mailDatas]);
+ 
+      echo "<pre>";
+
+      print_r ($mailQueueCache);
+
+      $queueFile = fopen ($mailQueueCacheFilePath, 'w');
+
+      fwrite ($queueFile, json_encode ($mailQueueCache));
+
+      fclose ($queueFile);
+
+    }
+
+
+    exit ('<br>YA');
+
     if (is_file ($queueFilePath)) {
       return self::AddToMailQueue ($mailDatas);
     }
