@@ -7,12 +7,14 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\Repositories\MailRepository;
+use App\Modules\BackgroundJobs\Jobs\MailJob;
+use App\Modules\BackgroundJobs\BackgroundJob;
 
 class Mail {
   use MailRepository;
 
   public function send () {
-    try { 
+    try {
       $this->mailer->send ();
       
       return true;
@@ -145,11 +147,12 @@ class Mail {
   }
 
   public static function ScheduleEmail (array $mailDatas = []) {
-    return self::SendMail ($mailDatas);
+    return self::AddToMailQueue ($mailDatas);
   }
 
   public static function AddToMailQueue (array $mailDatas = []) {
-    #return self::SendMail ($mailDatas);
+    /*
+    return self::SendMail ($mailDatas);
     $mailDatasAsString = base64_encode (json_encode ($mailDatas));
     
     $queueFilePath = join (DIRECTORY_SEPARATOR, [
@@ -160,50 +163,10 @@ class Mail {
       'mail',
       uuid () . '.json'
     ]);
+    */
 
-    $mailQueueCacheFilePath = join (DIRECTORY_SEPARATOR, [
-      dirname (dirname (__DIR__)), 
-      'db', 
-      'caches', 
-      'queue', 
-      'mail',
-      '_mail_queue.cache.json'
-    ]);
-
-    $mailQueueCacheFileHandler = fopen ($mailQueueCacheFilePath, 'r');
-
-    if (!!$mailQueueCacheFileHandler) {
-      $mailQueueCacheFileLines = [];
-      /**
-       * Fetch the file content
-       */
-      while (!feof ($mailQueueCacheFileHandler)) {
-        @array_push ($mailQueueCacheFileLines, fgets ($mailQueueCacheFileHandler));
-      }
-
-      @fclose ($mailQueueCacheFileHandler);
-
-      $mailQueueCacheFileContent = join ('', $mailQueueCacheFileLines);
-
-      $mailQueueCache = (array)(json_decode ($mailQueueCacheFileContent));
-
-      array_push ($mailQueueCache, ['data' => $mailDatas]);
- 
-      echo "<pre>";
-
-      print_r ($mailQueueCache);
-
-      $queueFile = fopen ($mailQueueCacheFilePath, 'w');
-
-      fwrite ($queueFile, json_encode ($mailQueueCache));
-
-      fclose ($queueFile);
-
-    }
-
-
-    exit ('<br>YA');
-
+    BackgroundJob::Queue ($mailDatas);
+    /***********************************************
     if (is_file ($queueFilePath)) {
       return self::AddToMailQueue ($mailDatas);
     }
@@ -215,5 +178,23 @@ class Mail {
     fclose ($queueFile);
 
     return 0;
+    *************************************************/
   }
+
+  #region SaveMailDataInCacheFile
+  /*
+  private static function SaveMailDataInCacheFile ($mailQueueCacheFilePath, $mailQueueCache) {
+    $queueFile = fopen ($mailQueueCacheFilePath, 'w');
+
+    if (!flock ($queueFile, LOCK_EX)) {
+      return forward_static_call_array ([self::class, 'SaveMailDataInCacheFile'], func_get_args ());
+    }
+
+    fwrite ($queueFile, json_encode ($mailQueueCache, JSON_PRETTY_PRINT));
+    
+    flock ($queueFile, LOCK_UN);
+    fclose ($queueFile);
+  }
+  */
+  #endregion
 }

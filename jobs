@@ -6,11 +6,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/dotenv.config.php';
 
 use App\Modules\BackgroundJobs\Watcher;
+use App\Utils\Commands\Jobs;
 
+/*
 print ("\nMail Queue Started...!!\n");
 
 Watcher::Start ();
 
 print ("\nMail Queue Ended...!!\n\tBye...! :)");
+*/
+Jobs::Handle ();
 
 exit (0);

@@ -1,8 +1,8 @@
 {
-  "name": "app-frontend",
+  "name": "trounex",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Italo Rodrigues <italo.rodrigues@gmail.com>",
+  "author": "Agostiho Sam'l <agostinhosaml832@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -29,9 +29,5 @@
     "start": "npm-run-all -p start:launch start:queue",
     "build": "webpack --mode=production"
   },
-  "dependencies": {
-    "axios": "^0.26.1",
-    "cep-promise": "^4.1.2",
-    "v4f": "^0.1.2"
-  }
+  "dependencies": {}
 }
