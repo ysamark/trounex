@@ -52,8 +52,10 @@ class View {
         && !($trace ['class'] != BaseController::class)
         && isset ($trace ['args'])
         && is_array ($args = $trace ['args'])
-        && $args [-1 + count ($args)] instanceof Closure) {
-        return call_user_func_array (Server::lambda ($args [-1 + count ($args)]), []);
+        && $args [-1 + count ($args)] instanceof Closure) { 
+        $handler = Server::lambda ($args [-1 + count ($args)]);
+
+        return call_user_func_array ($handler, []);
       }
     }
   }

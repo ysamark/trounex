@@ -1,0 +1,59 @@
+[
+    {
+        "JobProps": {
+            "Subject": "Agostinho Lopes - Querendo Envio de Email e66f5e4f-44a2-4e21-a589-3e36add28386",
+            "AltBody": "Ol\u00e1 carinha, como vai??",
+            "Body": "<h1 style=\"border: 10px solid #daa540; padding: 70px; font-size: 80px; color: #ffffff; background-color: red;\">Ol\u00e1 carinha, como vai??<\/h1> <br>e66f5e4f-44a2-4e21-a589-3e36add28386",
+            "Addresses": [
+                [
+                    "agostinhosaml832@gmail.com",
+                    "Agostinho Lopes"
+                ],
+                [
+                    "luiskapemba@gmail.com",
+                    "H\u00e9lder Lu\u00eds Kapemba"
+                ]
+            ]
+        },
+        "JobHandler": "App\\Modules\\BackgroundJobs\\Jobs\\MailJob",
+        "JobId": "c9278bad-30ee-4a3f-b1b6-3b9fb55f6049"
+    },
+    {
+        "JobProps": {
+            "Subject": "Agostinho Lopes - Querendo Envio de Email 8e7c7378-86f7-4dba-9e4c-c625af89dd69",
+            "AltBody": "Ol\u00e1 carinha, como vai??",
+            "Body": "<h1 style=\"border: 10px solid #daa540; padding: 70px; font-size: 80px; color: #ffffff; background-color: red;\">Ol\u00e1 carinha, como vai??<\/h1> <br>8e7c7378-86f7-4dba-9e4c-c625af89dd69",
+            "Addresses": [
+                [
+                    "agostinhosaml832@gmail.com",
+                    "Agostinho Lopes"
+                ],
+                [
+                    "luiskapemba@gmail.com",
+                    "H\u00e9lder Lu\u00eds Kapemba"
+                ]
+            ]
+        },
+        "JobHandler": "App\\Modules\\BackgroundJobs\\Jobs\\MailJob",
+        "JobId": "9606b9cc-97e9-47d4-87aa-2d6a732f1fdb"
+    },
+    {
+        "JobProps": {
+            "Subject": "Agostinho Lopes - Querendo Envio de Email 8b3903b7-b09f-439e-90ad-73fcecbfbf01",
+            "AltBody": "Ol\u00e1 carinha, como vai??",
+            "Body": "<h1 style=\"border: 10px solid #daa540; padding: 70px; font-size: 80px; color: #ffffff; background-color: red;\">Ol\u00e1 carinha, como vai??<\/h1> <br>8b3903b7-b09f-439e-90ad-73fcecbfbf01",
+            "Addresses": [
+                [
+                    "agostinhosaml832@gmail.com",
+                    "Agostinho Lopes"
+                ],
+                [
+                    "luiskapemba@gmail.com",
+                    "H\u00e9lder Lu\u00eds Kapemba"
+                ]
+            ]
+        },
+        "JobHandler": "App\\Modules\\BackgroundJobs\\Jobs\\MailJob",
+        "JobId": "51510fc8-316e-48c7-b8e5-622f4f7b9f94"
+    }
+]

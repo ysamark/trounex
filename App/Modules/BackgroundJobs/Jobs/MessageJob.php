@@ -2,13 +2,13 @@
 
 namespace App\Modules\BackgroundJobs\Jobs;
 
-class MessageJob {
+class MessageJob extends Job {
   /**
    * @method Run
    */
-  function run ($messageDatas) {
+  function run ($messageData) {
 
-    print_r ($messageDatas);
+    print_r ($messageData);
 
     print ("\n\n\n\n\nSend Message::MessageJon - ".uniqid ()."\n\n\n");
 

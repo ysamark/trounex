@@ -150,7 +150,7 @@ class Mail {
     return self::AddToMailQueue ($mailDatas);
   }
 
-  public static function AddToMailQueue (array $mailDatas = []) {
+  public static function AddToMailQueue (array $mailData = []) {
     /*
     return self::SendMail ($mailDatas);
     $mailDatasAsString = base64_encode (json_encode ($mailDatas));
@@ -165,7 +165,7 @@ class Mail {
     ]);
     */
 
-    BackgroundJob::Queue ($mailDatas);
+    BackgroundJob::QueueMail ($mailData);
     /***********************************************
     if (is_file ($queueFilePath)) {
       return self::AddToMailQueue ($mailDatas);

@@ -5,7 +5,7 @@ namespace App\Modules\BackgroundJobs\Jobs;
 use App\Services\Mail;
 use PHPMailer\PHPMailer\SMTP;
 
-class MailJob {
+class MailJob extends Job {
   /**
    * @method Run
    */

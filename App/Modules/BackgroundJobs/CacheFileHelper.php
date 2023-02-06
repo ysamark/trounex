@@ -13,6 +13,8 @@ trait CacheFileHelper {
       if (is_resource ($queueFile)) {
         fclose ($queueFile);
       }
+
+      usleep(200);
       
       return forward_static_call_array ([self::class, 'SaveDataInCacheFile'], func_get_args ());
     }
@@ -21,5 +23,41 @@ trait CacheFileHelper {
     
     flock ($queueFile, LOCK_UN);
     fclose ($queueFile);
+  }
+
+  /**
+   * @method void createFile
+   */
+  protected static function createFile (string $filePath) {
+    if (!is_dir (dirname ($filePath))) {
+      self::createDirIfNotExists(dirname ($filePath));
+    }
+    
+    @fclose(@fopen($filePath, 'w'));
+  }
+
+  /**
+   * @method void createFile
+   * 
+   * Create a new directory from a given
+   * absolute path.
+   * 
+   */
+  protected static function createDirIfNotExists (string $dirPath) {
+    $paths = preg_split ('/(\/|\\\)+/', $dirPath);
+    $pathsCount = count ($paths);
+
+    for ($i = 0; $i < $pathsCount; $i++) {
+      $currentPath = join (
+        DIRECTORY_SEPARATOR,
+        array_slice ($paths, 0, $i + 1)
+      );
+
+      if (!file_exists ($currentPath) && $currentPath) {
+        mkdir ($currentPath);
+      }
+    }
+
+    return $dirPath;
   }
 }

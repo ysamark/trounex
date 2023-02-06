@@ -3,21 +3,27 @@
 namespace App\Modules\BackgroundJobs;
 
 use App\Modules\BackgroundJobs\Jobs\MailJob;
+use App\Utils\ErrorHandler;
 
 class BackgroundJob {
   use CacheFileHelper;
+  use BackgroundJob\CoreObject;
   /**
    * @method void Queue
    */
-  public static function Queue (array $jobData) {
+  public static function Queue (BackgroundJob $job, array $jobData) {
     $queueCacheFilePath = join (DIRECTORY_SEPARATOR, [
       dirname(dirname (dirname (__DIR__))), 
       'db', 
       'caches', 
       'queue', 
-      'mail',
-      '_mail_queue.cache.json'
+      $job->name,
+      '__data__.cache.json'
     ]);
+
+    if (!file_exists ($queueCacheFilePath)) {
+      self::createFile ($queueCacheFilePath);
+    }
 
     # $queueCacheFileHandler = fopen ($queueCacheFilePath, 'r');
 
@@ -38,7 +44,7 @@ class BackgroundJob {
 
       array_push ($queueCache, [
         'JobProps' => $jobData,
-        'JobHandler' => MailJob::class,
+        'JobHandler' => $job->className,
         "JobId" => uuid ()
       ]);
 
@@ -46,5 +52,39 @@ class BackgroundJob {
     }
 
     return 0;
+  }
+
+  public static function __callStatic ($methodName, array $arguments = []) {
+    $queueHelperPrefixRe = '/^(Queue)/';
+
+    if (preg_match ($queueHelperPrefixRe, $methodName)) {
+      $jobName = preg_replace ($queueHelperPrefixRe, '', $methodName);
+      $jobClassName = join ('', [$jobName, 'Job']);
+      $jobClassRef = join ('\\', [
+        'App', 
+        'Modules', 
+        'BackgroundJobs', 
+        'Jobs',
+        $jobClassName
+      ]);
+
+      if (!(class_exists ($jobClassRef) && in_array (Jobs\Job::class, class_parents ($jobClassRef)))) {
+        exit($jobClassRef);
+        return ErrorHandler::handle ('No job called ' . $jobName);
+      }
+
+      $jobData = isset ($arguments [0]) ? $arguments [0] : null;
+
+      $job = new BackgroundJob ([
+        'name' => $jobName,
+        'className' => $jobClassRef,
+        'callArgs' => $arguments,
+        'data' => $jobData
+      ]);
+
+      return self::Queue ($job, $jobData);
+    }
+
+    ErrorHandler::handle ("Not defined method: $methodName for BackgroundJob class");
   }
 }
